@@ -9,7 +9,7 @@ To Optimize the query performance it reduces shuffling because it helps you stor
 - Docker
 - Linux Terminal
 - CSV / Text
-- Files
+- Parquet file (compressed file supported in HDFS)
 
 ## Project Objectives
 - Bucketing data (converting regular non partitioned data to bucketing data)
@@ -117,10 +117,38 @@ Advantage of parquet file format
 Difference betn row based storage(text, csv) and column based storage (parquet format)
 - parquet is not readable as its compressed while txt and csv are redable
 - parquet is compressed and uses less size which reduces data scan that are also the advantage of using parquet file format
+![Screenshot10v](Screenshots_day16/Screenshot(265).png)
+
+
+created parquet table and inserted value from employee table(basically converting employee table that is in text format to parque table)
 
  ![Screenshot10iv](Screenshots_day16/Screenshot(10iv).png)
 
-converted text table to parquet table and inserted values in parquet table
+ Viewing the parque file in HDFS Location 
 
-![Screenshot10v](Screenshots_day16/Screenshot(265).png)
+![Screenshot10vi](Screenshots_day16/Screenshot(266).png)
+As you can see its compressed so its not viewable but the advantage we have is that its compressed and need less storage space and also reduce data scan (data projection)
+
+## Step 11: Creating Static Partitioning
+
+![Screenshot10vi](Screenshots_day16/Screenshot(267).png)
+
+Here we created 3 directories: 1st directory we'll be using as a table location
+
+Again we created 2 more folder year=2010 and year=2011 respectively saving/uploading file1 to hdfs (which we created using nano command) in year=2012 directory location.
+
+Again Saving/uploading  file11 in year=2011 directory (in HDFS)
+
+![Screenshot10vii](Screenshots_day16/Screenshot(269).png)
+
+Number of folders depends on no. of records here we can view 2 folders 2010 with rahul and 2010 with null.
+The reason we are'nt able to view data using select * from userdata is that external table points to historical data that is data cluld be huge in size cause its stored in multiple folders. So, by default it doesn't allow to read the complete table.
+
+If we want to read we have to provide specific folder using where clause (select * from userdata where year=2010) then we'll only bhe able to see.
+The entire data is stored in multiple folders so it could be huge in size thats why by defauld it won't work that why we have to show specific file using where clause. That is the reason why its stops supporting it  
+
+# Conclusion 
+This project provided hands-on experience with Hive, Hadoop HDFS, partitioning, bucketing, and Parquet, static partitioning. We learned how bucketing can reduce data shuffling, partitioning can reduce data scanning, and Parquet can reduce storage size through compression and efficient columnar storage. Overall, the project helped build a practical understanding of how Hive organizes and optimizes large datasets in HDFS.
+
+
 
