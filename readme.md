@@ -41,6 +41,25 @@ Used select * command to view top 10 rows of the data contained in input_table
 
 As we know set commands are mandatory as by default bucketing and partitioning data cannot be done. Manually data is stored  in non-partition way
 
-And creating bucketing table. 
+And created table named 'bucket_table' after using set commands both for partitioning and bucketing. 
 
 ![Screenshot3](Screenshots_day16/Screenshot_(3).png)
+
+## Step 4: Loading data for bucketing and partitioning
+Reminder: Loading data for bucketing and partitioning is not possible without using set commands for both which we did in previous step. 
+
+![Screenshot4](Screenshots_day16/Screenshot_(4).png)
+
+## Step 5: Inserted data with bucket table including partitioned by city
+
+After using this command
+
+insert into table bucket_table partition(city) select street,zip,state,beds,baths,sq_feet,flat_type,price,city from input_table;
+
+Viewed the partitions created (via partitioned by city) in 'bucket_table'.
+
+![Screenshot5](Screenshots_day16/Screenshot_(5).png)
+
+## Step 6: Viewing the created partitions in HDFS where its actually stored
+
+![Screenshot6](Screenshots_day16/Screenshot_(6).png)
