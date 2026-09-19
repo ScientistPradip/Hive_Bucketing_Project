@@ -1,6 +1,12 @@
 # Hive ProjectII (Bucketing Data)
-Why Bucketing?
+
+
+## Summary
+This hands-on project explores Apache Hive and Hadoop HDFS for organizing and processing large datasets. The project focuses on Hive partitioning and bucketing, including static and dynamic partitioning, external and partitioned tables, and HiveQL queries. It also covers Text-to-Parquet conversion and the differences between row-based and columnar storage. The project was completed in a Docker and Linux environment, providing practical experience with how Hive tables and data are organized and stored in HDFS for efficient Big Data processing.
+
+### Why Bucketing?
 To Optimize the query performance it reduces shuffling because it helps you store the common data on common machine. Similar to partitioning that increases performance by reducing data scanning it also optmizes by reducing shuffling. 
+
 
 ## Technologies Used
 - Apache Hive
